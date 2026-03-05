@@ -26,262 +26,256 @@
     .subtitle {
       font-size: 0.95rem;
       color: #4a5568;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
       text-align: center;
     }
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 28px;
+    .quiz-wrapper {
       width: 100%;
-      max-width: 1100px;
-    }
-    .flip-card {
-      perspective: 1200px;
-      height: 280px;
-      cursor: pointer;
-    }
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.65s cubic-bezier(0.4,0.2,0.2,1);
-      transform-style: preserve-3d;
-    }
-    .flip-card.flipped .flip-card-inner {
-      transform: rotateY(180deg);
-    }
-    .flip-card-front,
-    .flip-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      border-radius: 14px;
-      padding: 28px 26px;
+      max-width: 640px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
-    }
-    .flip-card-front {
-      background: linear-gradient(135deg, #1a2e4a 0%, #2d5282 100%);
-      color: #fff;
-    }
-    .card-number {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #90cdf4;
-      margin-bottom: 12px;
-    }
-    .card-question {
-      font-size: 1.05rem;
-      font-weight: 600;
-      line-height: 1.5;
-      margin-bottom: 18px;
-    }
-    .card-options {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .card-options li {
-      font-size: 0.88rem;
-      color: #bee3f8;
-      line-height: 1.4;
-    }
-    .card-options li span.letter {
-      font-weight: 700;
-      margin-right: 6px;
-      color: #90cdf4;
-    }
-    .flip-hint {
-      margin-top: auto;
-      font-size: 0.72rem;
-      color: #90cdf4;
-      text-align: right;
-      letter-spacing: 1px;
-      opacity: 0.8;
-      padding-top: 10px;
-    }
-    .flip-card-back {
-      background: linear-gradient(135deg, #276749 0%, #38a169 100%);
-      color: #fff;
-      transform: rotateY(180deg);
       align-items: center;
-      text-align: center;
-    }
-    .answer-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #c6f6d5;
-      margin-bottom: 14px;
-    }
-    .answer-text {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.5;
-    }
-    .flip-hint-back {
-      margin-top: auto;
-      font-size: 0.72rem;
-      color: #c6f6d5;
-      letter-spacing: 1px;
-      opacity: 0.8;
-      padding-top: 10px;
+      gap: 20px;
     }
     .cover-card {
-      grid-column: 1 / -1;
+      width: 100%;
       background: linear-gradient(135deg, #1a2e4a 0%, #2b4c7e 100%);
       border-radius: 14px;
-      padding: 36px 40px;
+      padding: 28px 32px;
       color: #fff;
       box-shadow: 0 4px 18px rgba(0,0,0,0.12);
       text-align: center;
     }
     .cover-card h2 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 800;
       color: #90cdf4;
       text-transform: uppercase;
       letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    .cover-card p { font-size: 0.95rem; color: #e2e8f0; line-height: 1.6; }
+    .cover-card p em { color: #90cdf4; font-style: italic; }
+    .question-card {
+      width: 100%;
+      background: linear-gradient(135deg, #1a2e4a 0%, #2d5282 100%);
+      border-radius: 14px;
+      padding: 28px 26px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+      color: #fff;
+    }
+    .card-number {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #90cdf4;
+      margin-bottom: 10px;
+    }
+    .card-question {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+    .options-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .option-btn {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(144,205,244,0.3);
+      border-radius: 8px;
+      padding: 11px 16px;
+      color: #e2e8f0;
+      font-size: 0.92rem;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.18s, border-color 0.18s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .option-btn:hover:not(:disabled) {
+      background: rgba(144,205,244,0.15);
+      border-color: #90cdf4;
+      transform: translateX(3px);
+    }
+    .option-btn .letter { font-weight: 700; color: #90cdf4; min-width: 18px; }
+    .option-btn.correct { background: rgba(39,103,73,0.55); border-color: #68d391; color: #fff; }
+    .option-btn.correct .letter { color: #68d391; }
+    .option-btn.wrong { background: rgba(155,44,44,0.35); border-color: #fc8181; color: #fed7d7; }
+    .option-btn.wrong .letter { color: #fc8181; }
+    .option-btn:disabled { cursor: default; }
+    .result-badge {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
       margin-bottom: 14px;
     }
-    .cover-card p {
-      font-size: 1rem;
-      color: #e2e8f0;
-      line-height: 1.7;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .cover-card p em {
+    .result-badge.show { display: flex; }
+    .result-badge.correct-msg { background: rgba(39,103,73,0.4); color: #c6f6d5; border: 1px solid #68d391; }
+    .result-badge.wrong-msg { background: rgba(155,44,44,0.3); color: #fed7d7; border: 1px solid #fc8181; }
+    .nav-row { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+    .nav-btn {
+      background: rgba(144,205,244,0.12);
+      border: 2px solid rgba(144,205,244,0.4);
+      border-radius: 8px;
       color: #90cdf4;
-      font-style: italic;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 8px 20px;
+      cursor: pointer;
+      transition: background 0.18s, border-color 0.18s;
     }
-    footer {
-      margin-top: 48px;
-      font-size: 0.8rem;
-      color: #718096;
+    .nav-btn:hover:not(:disabled) { background: rgba(144,205,244,0.25); border-color: #90cdf4; }
+    .nav-btn:disabled { opacity: 0.3; cursor: default; }
+    .progress-text { font-size: 0.8rem; color: #90cdf4; letter-spacing: 1px; }
+    .score-card {
+      display: none;
+      width: 100%;
+      background: linear-gradient(135deg, #276749 0%, #38a169 100%);
+      border-radius: 14px;
+      padding: 32px 28px;
       text-align: center;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+      color: #fff;
     }
+    .score-card.show { display: block; }
+    .score-card h2 { font-size: 1.2rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #c6f6d5; margin-bottom: 12px; }
+    .score-number { font-size: 2.8rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .score-card p { font-size: 0.95rem; color: #c6f6d5; margin-bottom: 20px; }
+    .restart-btn { background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.5); border-radius: 8px; color: #fff; font-size: 0.9rem; font-weight: 700; padding: 10px 28px; cursor: pointer; transition: background 0.18s; }
+    .restart-btn:hover { background: rgba(255,255,255,0.27); }
+    footer { margin-top: 40px; font-size: 0.8rem; color: #718096; text-align: center; }
   </style>
 </head>
 <body>
   <h1>Test Your Knowledge</h1>
-  <p class="subtitle">Click a card to reveal the answer</p>
-  <div class="cards-grid">
+  <p class="subtitle">Select an answer to reveal if you’re correct</p>
+  <div class="quiz-wrapper">
     <div class="cover-card">
       <h2>Leak Testing</h2>
       <p>Test your knowledge of the leak testing method with these sample questions from the <em>ASNT Level III Study Guide: Leak Testing</em>, second edition.</p>
     </div>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <div class="card-number">Question 1</div>
-          <div class="card-question">What type of testing is typically performed using a helium mass spectrometer in leak testing?</div>
-          <ul class="card-options">
-            <li><span class="letter">a.</span>Vacuum testing</li>
-            <li><span class="letter">b.</span>Hydrostatic testing</li>
-            <li><span class="letter">c.</span>Barometric testing</li>
-            <li><span class="letter">d.</span>Viscosity checking</li>
-          </ul>
-          <div class="flip-hint">Tap to reveal answer ▶</div>
-        </div>
-        <div class="flip-card-back">
-          <div class="answer-label">Correct Answer</div>
-          <div class="answer-text">a. Vacuum testing</div>
-          <div class="flip-hint-back">Tap to go back ◀</div>
-        </div>
+    <div class="question-card" id="question-card">
+      <div class="card-number" id="card-number">Question 1 of 5</div>
+      <div class="card-question" id="card-question"></div>
+      <div class="result-badge" id="result-badge"></div>
+      <ul class="options-list" id="options-list"></ul>
+      <div class="nav-row">
+        <button class="nav-btn" id="btn-prev" onclick="navigate(-1)">◄ PREV</button>
+        <span class="progress-text" id="progress-dots"></span>
+        <button class="nav-btn" id="btn-next" onclick="navigate(1)">NEXT ►</button>
       </div>
     </div>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <div class="card-number">Question 2</div>
-          <div class="card-question">Which of the following factors affects the response or cleanup times of a vacuum test system?</div>
-          <ul class="card-options">
-            <li><span class="letter">a.</span>The volume of the object being tested</li>
-            <li><span class="letter">b.</span>The range of the vacuum gauge connected in the system</li>
-            <li><span class="letter">c.</span>The partial pressure of nitrogen in the test system</li>
-            <li><span class="letter">d.</span>The Brownian coefficient of the tracer gas</li>
-          </ul>
-          <div class="flip-hint">Tap to reveal answer ▶</div>
-        </div>
-        <div class="flip-card-back">
-          <div class="answer-label">Correct Answer</div>
-          <div class="answer-text">a. The volume of the object being tested</div>
-          <div class="flip-hint-back">Tap to go back ◀</div>
-        </div>
-      </div>
-    </div>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <div class="card-number">Question 3</div>
-          <div class="card-question">What is an output signal from a mass spectrometer leak detector that is caused by something other than a real leak called?</div>
-          <ul class="card-options">
-            <li><span class="letter">a.</span>Doppler signal</li>
-            <li><span class="letter">b.</span>Dipole signal</li>
-            <li><span class="letter">c.</span>Background</li>
-            <li><span class="letter">d.</span>Virtual leak</li>
-          </ul>
-          <div class="flip-hint">Tap to reveal answer ▶</div>
-        </div>
-        <div class="flip-card-back">
-          <div class="answer-label">Correct Answer</div>
-          <div class="answer-text">c. Background</div>
-          <div class="flip-hint-back">Tap to go back ◀</div>
-        </div>
-      </div>
-    </div>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <div class="card-number">Question 4</div>
-          <div class="card-question">Which of the following factors affects the sensitivity attainable by halogen diode leak testing?</div>
-          <ul class="card-options">
-            <li><span class="letter">a.</span>Differential pressure</li>
-            <li><span class="letter">b.</span>Concentration of oxygen in the atmosphere</li>
-            <li><span class="letter">c.</span>Amount of halogen held in the source</li>
-            <li><span class="letter">d.</span>Ambient atmospheric pressure</li>
-          </ul>
-          <div class="flip-hint">Tap to reveal answer ▶</div>
-        </div>
-        <div class="flip-card-back">
-          <div class="answer-label">Correct Answer</div>
-          <div class="answer-text">a. Differential pressure</div>
-          <div class="flip-hint-back">Tap to go back ◀</div>
-        </div>
-      </div>
-    </div>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <div class="card-number">Question 5</div>
-          <div class="card-question">One way to increase accuracy and reliability of the results of a pressure change leak test is to:</div>
-          <ul class="card-options">
-            <li><span class="letter">a.</span>extend the time period of the test</li>
-            <li><span class="letter">b.</span>use a reliable person to record the gauge readings</li>
-            <li><span class="letter">c.</span>use a reliable dew point sensor</li>
-            <li><span class="letter">d.</span>shorten the time period of the test</li>
-          </ul>
-          <div class="flip-hint">Tap to reveal answer ▶</div>
-        </div>
-        <div class="flip-card-back">
-          <div class="answer-label">Correct Answer</div>
-          <div class="answer-text">a. extend the time period of the test</div>
-          <div class="flip-hint-back">Tap to go back ◀</div>
-        </div>
-      </div>
+    <div class="score-card" id="score-card">
+      <h2>Quiz Complete!</h2>
+      <div class="score-number" id="score-number"></div>
+      <p id="score-msg"></p>
+      <button class="restart-btn" onclick="restart()">Try Again</button>
     </div>
   </div>
   <footer>Source: <em>ASNT Level III Study Guide: Leak Testing</em>, second edition &nbsp;|&nbsp; Materials Evaluation, March 2026</footer>
+  <script>
+    const questions = [
+      { q: "What type of testing is typically performed using a helium mass spectrometer in leak testing?", options: ["Vacuum testing","Hydrostatic testing","Barometric testing","Viscosity checking"], correct: 0 },
+      { q: "Which of the following factors affects the response or cleanup times of a vacuum test system?", options: ["The volume of the object being tested","The range of the vacuum gauge connected in the system","The partial pressure of nitrogen in the test system","The Brownian coefficient of the tracer gas"], correct: 0 },
+      { q: "What is an output signal from a mass spectrometer leak detector that is caused by something other than a real leak called?", options: ["Doppler signal","Dipole signal","Background","Virtual leak"], correct: 2 },
+      { q: "Which of the following factors affects the sensitivity attainable by halogen diode leak testing?", options: ["Differential pressure","Concentration of oxygen in the atmosphere","Amount of halogen held in the source","Ambient atmospheric pressure"], correct: 0 },
+      { q: "One way to increase accuracy and reliability of the results of a pressure change leak test is to:", options: ["extend the time period of the test","use a reliable person to record the gauge readings","use a reliable dew point sensor","shorten the time period of the test"], correct: 0 }
+    ];
+    const letters = ['a','b','c','d'];
+    let current = 0, score = 0;
+    let answered = new Array(questions.length).fill(null);
+    function renderQuestion(index) {
+      const q = questions[index];
+      document.getElementById('card-number').textContent = 'Question ' + (index+1) + ' of ' + questions.length;
+      document.getElementById('card-question').textContent = q.q;
+      const badge = document.getElementById('result-badge');
+      badge.className = 'result-badge';
+      badge.textContent = '';
+      const list = document.getElementById('options-list');
+      list.innerHTML = '';
+      q.options.forEach((opt, i) => {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerHTML = '<span class="letter">' + letters[i] + '.</span>' + opt;
+        if (answered[index] !== null) {
+          btn.disabled = true;
+          if (i === q.correct) btn.classList.add('correct');
+          else if (answered[index] === i) btn.classList.add('wrong');
+        }
+        btn.addEventListener('click', () => selectAnswer(index, i));
+        li.appendChild(btn);
+        list.appendChild(li);
+      });
+      if (answered[index] !== null) showBadge(index);
+      updateNav();
+    }
+    function selectAnswer(qIndex, chosen) {
+      if (answered[qIndex] !== null) return;
+      answered[qIndex] = chosen;
+      const q = questions[qIndex];
+      const buttons = document.querySelectorAll('.option-btn');
+      buttons.forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === q.correct) btn.classList.add('correct');
+        else if (i === chosen) btn.classList.add('wrong');
+      });
+      if (chosen === q.correct) score++;
+      showBadge(qIndex);
+      updateNav();
+    }
+    function showBadge(qIndex) {
+      const q = questions[qIndex];
+      const badge = document.getElementById('result-badge');
+      const wasCorrect = answered[qIndex] === q.correct;
+      badge.textContent = wasCorrect ? '✓ Correct!' : '✗ Incorrect – correct answer: ' + letters[q.correct] + '. ' + q.options[q.correct];
+      badge.className = 'result-badge show ' + (wasCorrect ? 'correct-msg' : 'wrong-msg');
+    }
+    function updateNav() {
+      document.getElementById('btn-prev').disabled = current === 0;
+      const nextBtn = document.getElementById('btn-next');
+      if (current === questions.length - 1) {
+        if (answered[current] !== null) { nextBtn.textContent = 'FINISH ✓'; nextBtn.disabled = false; }
+        else { nextBtn.textContent = 'NEXT ►'; nextBtn.disabled = true; }
+      } else {
+        nextBtn.textContent = 'NEXT ►';
+        nextBtn.disabled = answered[current] === null;
+      }
+      const dots = questions.map((_, i) => answered[i] === null ? '○' : answered[i] === questions[i].correct ? '●' : '◉').join(' ');
+      document.getElementById('progress-dots').textContent = dots;
+    }
+    function navigate(dir) {
+      if (dir === 1 && current === questions.length - 1) { showScore(); return; }
+      current = Math.max(0, Math.min(questions.length - 1, current + dir));
+      renderQuestion(current);
+    }
+    function showScore() {
+      document.getElementById('question-card').style.display = 'none';
+      document.getElementById('score-card').classList.add('show');
+      document.getElementById('score-number').textContent = score + ' / ' + questions.length;
+      const pct = Math.round((score/questions.length)*100);
+      document.getElementById('score-msg').textContent = pct===100 ? 'Perfect score! Outstanding work.' : pct>=80 ? 'Great job! Strong understanding of leak testing.' : pct>=60 ? 'Good effort. Review the missed questions and try again.' : 'Keep studying – you\'ll get there!';
+    }
+    function restart() {
+      current = 0; score = 0; answered = new Array(questions.length).fill(null);
+      document.getElementById('score-card').classList.remove('show');
+      document.getElementById('question-card').style.display = '';
+      renderQuestion(0);
+    }
+    renderQuestion(0);
+  </script>
 </body>
 </html>
