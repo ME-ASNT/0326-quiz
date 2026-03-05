@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test Your Knowledge – Leak Testing</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f0f4f8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #1a2e4a;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .subtitle {
+      font-size: 0.95rem;
+      color: #4a5568;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      width: 100%;
+      max-width: 1100px;
+    }
+    .flip-card {
+      perspective: 1200px;
+      height: 280px;
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.65s cubic-bezier(0.4,0.2,0.2,1);
+      transform-style: preserve-3d;
+    }
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 14px;
+      padding: 28px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+    }
+    .flip-card-front {
+      background: linear-gradient(135deg, #1a2e4a 0%, #2d5282 100%);
+      color: #fff;
+    }
+    .card-number {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #90cdf4;
+      margin-bottom: 12px;
+    }
+    .card-question {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .card-options {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .card-options li {
+      font-size: 0.88rem;
+      color: #bee3f8;
+      line-height: 1.4;
+    }
+    .card-options li span.letter {
+      font-weight: 700;
+      margin-right: 6px;
+      color: #90cdf4;
+    }
+    .flip-hint {
+      margin-top: auto;
+      font-size: 0.72rem;
+      color: #90cdf4;
+      text-align: right;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      padding-top: 10px;
+    }
+    .flip-card-back {
+      background: linear-gradient(135deg, #276749 0%, #38a169 100%);
+      color: #fff;
+      transform: rotateY(180deg);
+      align-items: center;
+      text-align: center;
+    }
+    .answer-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #c6f6d5;
+      margin-bottom: 14px;
+    }
+    .answer-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.5;
+    }
+    .flip-hint-back {
+      margin-top: auto;
+      font-size: 0.72rem;
+      color: #c6f6d5;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      padding-top: 10px;
+    }
+    .cover-card {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #1a2e4a 0%, #2b4c7e 100%);
+      border-radius: 14px;
+      padding: 36px 40px;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+    .cover-card h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #90cdf4;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+    .cover-card p {
+      font-size: 1rem;
+      color: #e2e8f0;
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .cover-card p em {
+      color: #90cdf4;
+      font-style: italic;
+    }
+    footer {
+      margin-top: 48px;
+      font-size: 0.8rem;
+      color: #718096;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Test Your Knowledge</h1>
+  <p class="subtitle">Click a card to reveal the answer</p>
+  <div class="cards-grid">
+    <div class="cover-card">
+      <h2>Leak Testing</h2>
+      <p>Test your knowledge of the leak testing method with these sample questions from the <em>ASNT Level III Study Guide: Leak Testing</em>, second edition.</p>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-number">Question 1</div>
+          <div class="card-question">What type of testing is typically performed using a helium mass spectrometer in leak testing?</div>
+          <ul class="card-options">
+            <li><span class="letter">a.</span>Vacuum testing</li>
+            <li><span class="letter">b.</span>Hydrostatic testing</li>
+            <li><span class="letter">c.</span>Barometric testing</li>
+            <li><span class="letter">d.</span>Viscosity checking</li>
+          </ul>
+          <div class="flip-hint">Tap to reveal answer ▶</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="answer-label">Correct Answer</div>
+          <div class="answer-text">a. Vacuum testing</div>
+          <div class="flip-hint-back">Tap to go back ◀</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-number">Question 2</div>
+          <div class="card-question">Which of the following factors affects the response or cleanup times of a vacuum test system?</div>
+          <ul class="card-options">
+            <li><span class="letter">a.</span>The volume of the object being tested</li>
+            <li><span class="letter">b.</span>The range of the vacuum gauge connected in the system</li>
+            <li><span class="letter">c.</span>The partial pressure of nitrogen in the test system</li>
+            <li><span class="letter">d.</span>The Brownian coefficient of the tracer gas</li>
+          </ul>
+          <div class="flip-hint">Tap to reveal answer ▶</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="answer-label">Correct Answer</div>
+          <div class="answer-text">a. The volume of the object being tested</div>
+          <div class="flip-hint-back">Tap to go back ◀</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-number">Question 3</div>
+          <div class="card-question">What is an output signal from a mass spectrometer leak detector that is caused by something other than a real leak called?</div>
+          <ul class="card-options">
+            <li><span class="letter">a.</span>Doppler signal</li>
+            <li><span class="letter">b.</span>Dipole signal</li>
+            <li><span class="letter">c.</span>Background</li>
+            <li><span class="letter">d.</span>Virtual leak</li>
+          </ul>
+          <div class="flip-hint">Tap to reveal answer ▶</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="answer-label">Correct Answer</div>
+          <div class="answer-text">c. Background</div>
+          <div class="flip-hint-back">Tap to go back ◀</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-number">Question 4</div>
+          <div class="card-question">Which of the following factors affects the sensitivity attainable by halogen diode leak testing?</div>
+          <ul class="card-options">
+            <li><span class="letter">a.</span>Differential pressure</li>
+            <li><span class="letter">b.</span>Concentration of oxygen in the atmosphere</li>
+            <li><span class="letter">c.</span>Amount of halogen held in the source</li>
+            <li><span class="letter">d.</span>Ambient atmospheric pressure</li>
+          </ul>
+          <div class="flip-hint">Tap to reveal answer ▶</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="answer-label">Correct Answer</div>
+          <div class="answer-text">a. Differential pressure</div>
+          <div class="flip-hint-back">Tap to go back ◀</div>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-number">Question 5</div>
+          <div class="card-question">One way to increase accuracy and reliability of the results of a pressure change leak test is to:</div>
+          <ul class="card-options">
+            <li><span class="letter">a.</span>extend the time period of the test</li>
+            <li><span class="letter">b.</span>use a reliable person to record the gauge readings</li>
+            <li><span class="letter">c.</span>use a reliable dew point sensor</li>
+            <li><span class="letter">d.</span>shorten the time period of the test</li>
+          </ul>
+          <div class="flip-hint">Tap to reveal answer ▶</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="answer-label">Correct Answer</div>
+          <div class="answer-text">a. extend the time period of the test</div>
+          <div class="flip-hint-back">Tap to go back ◀</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>Source: <em>ASNT Level III Study Guide: Leak Testing</em>, second edition &nbsp;|&nbsp; Materials Evaluation, March 2026</footer>
+</body>
+</html>
